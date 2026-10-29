@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aryan Vadrevu Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Mechanical engineering portfolio of Aryan Vadrevu: CAD, FEA and CFD, and mechatronics projects. Rutgers University, CSWP certified.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a drawing sheet. Each project is a numbered sheet with a title block; zone markers frame the hero. */
+:root {
+  --paper: #eef0f1;
+  --sheet: #fbfcfc;
+  --ink: #161a1f;
+  --ink-2: #4b5560;
+  --rule: #c9cfd4;
+  --amber: #c98a00;
+  --amber-ink: #8a5d00;
+  --blue: #1f4e8c;
+  --shade: rgba(22, 26, 31, 0.05);
+  --f-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --s-1: 0.8125rem; --s0: 1.0625rem; --s1: 1.25rem; --s2: 1.6rem; --s3: 2.2rem; --s4: clamp(2.5rem, 6vw, 4.4rem);
+  --max: 1160px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1215; --sheet: #161a1e; --ink: #e7eaed; --ink-2: #a3acb5; --rule: #2d343b;
+    --amber: #f0b429; --amber-ink: #f0b429; --blue: #7fa8e0; --shade: rgba(255, 255, 255, 0.04);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1215; --sheet: #161a1e; --ink: #e7eaed; --ink-2: #a3acb5; --rule: #2d343b;
+  --amber: #f0b429; --amber-ink: #f0b429; --blue: #7fa8e0; --shade: rgba(255, 255, 255, 0.04);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--f-body); font-size: var(--s0); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+img, video { max-width: 100%; display: block; }
+a { color: var(--blue); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--f-display); font-stretch: 112%; line-height: 1.1; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.wrap {
+  max-width: var(--max); margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.mono { font-family: var(--f-mono); font-size: var(--s-1); letter-spacing: 0.02em; }
+.label { font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
+
+/* Nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { font-family: var(--f-display); font-stretch: 125%; font-weight: 700; font-size: 1rem; color: var(--ink); text-decoration: none; letter-spacing: 0.02em; white-space: nowrap; }
+.nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+.nav ul a { color: var(--ink-2); text-decoration: none; font-size: 0.95rem; }
+.nav ul a:hover { color: var(--ink); }
+@media (max-width: 760px) { .nav ul { display: none; } }
+
+/* Hero */
+.hero { padding-block: clamp(36px, 7vw, 80px) 40px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
+.hero h1 { font-size: var(--s4); font-weight: 800; letter-spacing: -0.01em; }
+.hero h1 span { display: block; color: var(--ink-2); font-weight: 500; font-size: 0.42em; font-stretch: 100%; letter-spacing: 0.01em; margin-top: 14px; }
+.hero .lede { margin-top: 22px; max-width: 34em; color: var(--ink-2); font-size: 1.12rem; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.95rem; border-radius: 2px; transition: background .15s, color .15s; font-family: var(--f-body); background: transparent; cursor: pointer; }
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn.primary:hover { background: transparent; color: var(--ink); }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 32px; max-width: 34em; }
+.facts div { background: var(--paper); padding: 12px 14px; }
+.facts b { display: block; font-family: var(--f-display); font-stretch: 112%; font-size: 1.05rem; }
+.facts small { color: var(--ink-2); font-size: 0.85rem; }
+
+/* Drawing sheet frame with zone markers */
+.sheet { position: relative; background: var(--sheet); border: 1px solid var(--rule); padding: 26px; }
+.sheet::before { content: ""; position: absolute; inset: 10px; border: 1px solid var(--rule); pointer-events: none; }
+.zone { position: absolute; font-family: var(--f-mono); font-size: 10px; color: var(--ink-2); line-height: 1; }
+.zone.t { top: 0; } .zone.b { bottom: 0; } .zone.l { left: 0; } .zone.r { right: 0; }
+.zone.t, .zone.b { height: 10px; display: flex; align-items: center; transform: translateX(-50%); }
+.zone.l, .zone.r { width: 10px; display: flex; justify-content: center; transform: translateY(-50%); }
+.sheet .art { position: relative; aspect-ratio: 1150 / 807; overflow: hidden; }
+.sheet .art img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sheet .art img { mix-blend-mode: normal; border-radius: 2px; } }
+:root[data-theme="dark"] .sheet .art img { mix-blend-mode: normal; border-radius: 2px; }
+.tblock { display: grid; grid-template-columns: 1.6fr 1fr 0.8fr; border: 1px solid var(--ink); margin-top: 14px; font-family: var(--f-mono); font-size: 11px; }
+.tblock > div { padding: 6px 8px; border-left: 1px solid var(--ink); min-width: 0; }
+.tblock > div:first-child { border-left: 0; }
+.tblock i { display: block; font-style: normal; color: var(--ink-2); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+.tblock b { font-weight: 500; overflow-wrap: anywhere; }
+
+/* Section headings */
+section { scroll-margin-top: 70px; }
+.sec { padding-block: clamp(48px, 7vw, 88px) 0; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 12px; margin-bottom: 28px; }
+.sec-head h2 { font-size: var(--s3); font-weight: 750; }
+
+/* Project index */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: inherit; font-size: 0.85rem; padding: 5px 12px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); border-radius: 999px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 960px) { .index { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .index { grid-template-columns: minmax(0, 1fr); } }
+.card { display: flex; flex-direction: column; background: var(--sheet); border: 1px solid var(--rule); text-decoration: none; color: var(--ink); transition: border-color .15s, transform .15s; }
+.card:hover { border-color: var(--ink); transform: translateY(-2px); }
+.card .thumb { aspect-ratio: 4 / 3; background: #fff; overflow: hidden; border-bottom: 1px solid var(--rule); }
+.card .thumb img { width: 100%; height: 100%; object-fit: contain; }
+.card .thumb img.cover { object-fit: cover; }
+.card .body { padding: 14px 16px 16px; display: grid; gap: 6px; }
+.card h3 { font-size: 1.12rem; font-weight: 700; }
+.card p { color: var(--ink-2); font-size: 0.95rem; line-height: 1.5; }
+.card .meta { display: flex; justify-content: space-between; gap: 8px; }
+.dwg { color: var(--amber-ink); font-weight: 500; }
+
+/* Case studies */
+.case { padding-block: 56px; border-bottom: 1px solid var(--rule); }
+.case:last-of-type { border-bottom: 0; }
+.case-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: 24px 48px; align-items: start; }
+@media (max-width: 820px) { .case-top { grid-template-columns: minmax(0, 1fr); } }
+.case h3 { font-size: var(--s2); font-weight: 750; margin-top: 6px; }
+.case .summary { margin-top: 14px; max-width: 40em; font-size: 1.08rem; }
+.spec { border: 1px solid var(--ink); font-family: var(--f-mono); font-size: 12px; }
+.spec div { display: grid; grid-template-columns: 92px minmax(0, 1fr); border-top: 1px solid var(--rule); }
+.spec div:first-child { border-top: 0; }
+.spec dt, .spec dd { margin: 0; padding: 7px 10px; }
+.spec dt { color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.08em; font-size: 10.5px; border-right: 1px solid var(--rule); }
+.spec dd { overflow-wrap: anywhere; }
+.figs { display: grid; gap: 14px; margin-top: 28px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.fig { margin: 0; background: #fff; border: 1px solid var(--rule); display: flex; flex-direction: column; min-width: 0; }
+.fig button { all: unset; cursor: zoom-in; display: block; flex: 1; min-height: 0; }
+.fig button:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
+.fig img, .fig video { width: 100%; height: 100%; object-fit: contain; }
+.fig > video { flex: 1 1 0; min-height: 0; background: #fff; }
+.fig figcaption { font-family: var(--f-mono); font-size: 11.5px; color: #4b5560; padding: 8px 10px; border-top: 1px solid #dde1e4; background: #fff; }
+.fig figcaption b { color: #8a5d00; font-weight: 500; margin-right: 6px; }
+.w4 { grid-column: span 4; } .w5 { grid-column: span 5; } .w6 { grid-column: span 6; } .w7 { grid-column: span 7; } .w8 { grid-column: span 8; } .w12 { grid-column: span 12; }
+.h-a { height: 360px; } .h-b { height: 300px; }
+@media (max-width: 760px) {
+  .figs { grid-template-columns: minmax(0, 1fr); }
+  .w4, .w5, .w6, .w7, .w8, .w12 { grid-column: auto; }
+  .h-a, .h-b { height: auto; }
+  .fig button { aspect-ratio: 4 / 3; }
+  .fig > video { flex: none; height: auto; aspect-ratio: 1; }
+}
+.points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 40px; margin: 28px 0 0; padding: 0; list-style: none; }
+@media (max-width: 760px) { .points { grid-template-columns: minmax(0, 1fr); } }
+.points li { position: relative; padding-left: 20px; color: var(--ink); max-width: 36em; }
+.points li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 9px; height: 9px; border: 1.5px solid var(--amber); transform: rotate(45deg); }
+.stats { display: flex; flex-wrap: wrap; gap: 0; margin-top: 28px; border: 1px solid var(--rule); background: var(--sheet); }
+.stat { flex: 1 1 160px; padding: 14px 18px; border-left: 1px solid var(--rule); }
+.stat:first-child { border-left: 0; }
+.stat b { display: block; font-family: var(--f-display); font-stretch: 112%; font-size: 1.6rem; font-weight: 750; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--ink-2); font-size: 0.9rem; }
+.links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; font-weight: 600; }
+
+/* Experience */
+.exp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 820px) { .exp { grid-template-columns: minmax(0, 1fr); } }
+.role { background: var(--sheet); border: 1px solid var(--rule); padding: 22px 24px; }
+.role h3 { font-size: 1.3rem; font-weight: 700; }
+.role .who { color: var(--amber-ink); font-family: var(--f-mono); font-size: 12.5px; margin-top: 6px; }
+.role ul { margin: 14px 0 0; padding-left: 18px; display: grid; gap: 6px; }
+.role li { color: var(--ink); }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--rule); }
+@media (max-width: 900px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .skills { grid-template-columns: minmax(0, 1fr); } }
+.skills > div { padding: 18px 20px 18px 0; border-bottom: 1px solid var(--rule); }
+.skills h3 { font-size: 0.78rem; font-family: var(--f-mono); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); font-stretch: 100%; }
+.skills ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 4px; }
+
+/* Certifications */
+.certs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 860px) { .certs { grid-template-columns: minmax(0, 1fr); } }
+.cert { background: var(--sheet); border: 1px solid var(--rule); display: flex; flex-direction: column; }
+.cert .img { background: #fff; border-bottom: 1px solid var(--rule); }
+.cert .img button { all: unset; cursor: zoom-in; display: block; }
+.cert .body { padding: 16px 18px; display: grid; gap: 4px; }
+.cert h3 { font-size: 1.1rem; font-weight: 700; }
+.cert .pending { flex: 1; display: grid; place-items: center; aspect-ratio: 936 / 662; border-bottom: 1px dashed var(--rule); background: repeating-linear-gradient(135deg, transparent 0 10px, var(--shade) 10px 11px); }
+.cert .pending span { font-family: var(--f-mono); font-size: 12px; color: var(--ink-2); border: 1px solid var(--rule); padding: 6px 10px; background: var(--sheet); }
+
+/* Education + contact */
+.edu { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 48px; }
+@media (max-width: 760px) { .edu { grid-template-columns: minmax(0, 1fr); } }
+.edu h3 { font-size: 1.35rem; font-weight: 700; }
+.contact { margin-top: clamp(56px, 8vw, 96px); background: var(--ink); color: var(--paper); }
+.contact .wrap { padding-block: 48px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; }
+.contact h2 { font-size: var(--s3); font-weight: 750; }
+.contact p { color: color-mix(in srgb, var(--paper) 72%, var(--ink)); margin-top: 8px; max-width: 34em; }
+.contact .addr { font-family: var(--f-mono); font-size: 1rem; user-select: all; }
+.contact .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.contact .btn { border-color: var(--paper); color: var(--paper); }
+.contact .btn:hover { background: var(--paper); color: var(--ink); }
+footer .wrap { padding-block: 22px; color: var(--ink-2); font-size: 0.85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; z-index: 50; background: rgba(10, 12, 14, 0.9); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb img { max-height: 84vh; max-width: min(1400px, 100%); background: #fff; }
+.lb p { color: #e7eaed; font-family: var(--f-mono); font-size: 12px; margin-top: 10px; text-align: center; }
+.lb button { position: absolute; top: max(14px, env(safe-area-inset-top, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); font: 600 14px var(--f-body); color: #fff; background: transparent; border: 1px solid #fff; padding: 6px 12px; cursor: pointer; }
+</style>
+</head><body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">ARYAN VADREVU</a>
+    <ul>
+      <li><a href="#work">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="label">Mechanical Engineering · Rutgers University</p>
+      <h1 style="margin-top:14px">Aryan Vadrevu<span>Design, analysis, and build: from SolidWorks model to finished part.</span></h1>
+      <p class="lede">I'm a mechanical engineering student at Rutgers (B.S. expected May 2027, minor in Mathematics) looking for mechanical engineering internships. I work in SolidWorks and ANSYS, build with mills, lathes and 3D printers, and I'm most interested in automotive engineering, robotics, and autonomous systems.</p>
+      <div class="cta">
+        <a class="btn primary" href="#work">View projects</a>
+        <a class="btn" href="assets/docs/Aryan-Vadrevu-Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+        <a class="btn" href="https://www.linkedin.com/in/aryan-vadrevu" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="facts">
+        <div><b>CSWP</b><small>Certified SolidWorks Professional</small></div>
+        <div><b>FSAE</b><small>Rutgers Formula Racing, Powertrain</small></div>
+        <div><b>Project Lead</b><small>Accessible 4 All, ~15 members</small></div>
+        <div><b>FE / EIT</b><small>NCEES exam in progress</small></div>
+      </div>
+    </div>
+    <div class="sheet" aria-label="Wheel loader assembly, SolidWorks">
+      <span class="zone t" style="left:25%">2</span><span class="zone t" style="left:75%">1</span>
+      <span class="zone b" style="left:25%">2</span><span class="zone b" style="left:75%">1</span>
+      <span class="zone l" style="top:28%">B</span><span class="zone l" style="top:72%">A</span>
+      <span class="zone r" style="top:28%">B</span><span class="zone r" style="top:72%">A</span>
+      <div class="art"><img src="assets/img/wheel-loader.webp" width="1150" height="807" alt="SolidWorks render of a wheel loader with raised bucket, hydraulic boom cylinders, cab and articulated chassis"></div>
+      <div class="tblock">
+        <div><i>Title</i><b>WHEEL LOADER ASSY</b></div>
+        <div><i>Software</i><b>SOLIDWORKS</b></div>
+        <div><i>Parts</i><b>16 + 2 ASM</b></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="sec" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip" id="f-all" data-f="all" aria-pressed="true">All</button>
+        <button class="chip" id="f-cad" data-f="cad" aria-pressed="false">CAD &amp; design</button>
+        <button class="chip" id="f-sim" data-f="sim" aria-pressed="false">FEA &amp; CFD</button>
+        <button class="chip" id="f-mech" data-f="mech" aria-pressed="false">Mechatronics</button>
+      </div>
+    </div>
+    <div class="index" id="index">
+      <a class="card" href="#rocket" data-tags="cad sim">
+        <div class="thumb"><img src="assets/img/rocket-assembly.webp" width="456" height="707" alt="Liquid rocket engine assembly render" loading="lazy"></div>
+        <div class="body"><div class="meta mono"><span class="dwg">DWG 01</span><span>SolidWorks</span></div><h3>Open-Cycle Liquid Rocket Engine</h3><p>Gas-generator engine with turbopumps, injector plate, combustion chamber and bell nozzle.</p></div>
+      </a>
+      <a class="card" href="#gimbal" data-tags="cad sim">
+        <div class="thumb"><img src="assets/img/gimbal-cad.webp" width="838" height="982" alt="Gimbal CAD model" loading="lazy"></div>
+        <div class="body"><div class="meta mono"><span class="dwg">DWG 02</span><span>SolidWorks · Fusion</span></div><h3>Economical Gimbal System</h3><p>3D-printed handheld camera gimbal designed to an $8.78 unit material cost.</p></div>
+      </a>
+      <a class="card" href="#cpu" data-tags="sim">
+        <div class="thumb"><img class="cover" src="assets/img/cpu-temp-copper.webp" width="594" height="390" alt="ANSYS temperature contour around a copper heat sink" loading="lazy"></div>
+        <div class="body"><div class="meta mono"><span class="dwg">DWG 03</span><span>ANSYS Fluent</span></div><h3>CPU Heat Sink Fin Study</h3><p>CFD and thermal study of 12 fin geometry and material combinations.</p></div>
+      </a>
+      <a class="card" href="#turret" data-tags="mech">
+        <div class="thumb"><img class="cover" src="assets/img/turret-build.webp" width="1050" height="1400" alt="Built turret prototype on the bench" loading="lazy"></div>
+        <div class="body"><div class="meta mono"><span class="dwg">DWG 04</span><span>Arduino · MATLAB</span></div><h3>Distance-Sensing Rotating Turret</h3><p>Ultrasonic sensing, servo aiming and a roller launcher on an Arduino Mega.</p></div>
+      </a>
+      <a class="card" href="#bicycle" data-tags="cad sim">
+        <div class="thumb"><img src="assets/img/bicycle.webp" width="1072" height="906" alt="Bicycle assembly render" loading="lazy"></div>
+        <div class="body"><div class="meta mono"><span class="dwg">DWG 05</span><span>SolidWorks Motion</span></div><h3>Bicycle Design &amp; FEA</h3><p>Full bicycle assembly with frame FEA and pedaling and steering kinematics.</p></div>
+      </a>
+      <a class="card" href="#loader" data-tags="cad">
+        <div class="thumb"><img src="assets/img/wheel-loader.webp" width="1150" height="807" alt="Wheel loader render" loading="lazy"></div>
+        <div class="body"><div class="meta mono"><span class="dwg">DWG 06</span><span>SolidWorks</span></div><h3>Wheel Loader Assembly</h3><p>Construction loader with a working boom and bucket linkage and hydraulic cylinders.</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" aria-label="Project details">
+
+  <article class="case" id="rocket" data-tags="cad sim">
+    <div class="case-top">
+      <div>
+        <p class="label">DWG 01 · Team project, 5 members</p>
+        <h3>Open-Cycle Liquid Rocket Engine</h3>
+        <p class="summary">A simplified gas-generator (open-cycle) liquid rocket engine, modeled and assembled in SolidWorks. A gas generator drives a turbine that spins the fuel and oxidizer turbopumps on a common shaft. The propellants meet at the injector plate, burn in the combustion chamber, and expand through a bell nozzle. The turbine exhaust is dumped overboard, which is what makes the cycle "open", the same layout used on the Saturn V's F-1.</p>
+      </div>
+      <dl class="spec">
+        <div><dt>Role</dt><dd>Combustion chamber, injector plate, nozzle</dd></div>
+        <div><dt>Tools</dt><dd>SolidWorks parts, assembly, drawings</dd></div>
+        <div><dt>Assembly</dt><dd>13 line items, 30+ part files</dd></div>
+        <div><dt>Course</dt><dd>CAD project, Rutgers</dd></div>
+      </dl>
+    </div>
+    <div class="figs">
+      <figure class="fig w7 h-a"><button data-lb aria-label="Enlarge final assembly drawing"><img src="assets/img/rocket-drawing.webp" width="739" height="554" alt="Final assembly drawing with balloons and a 13-item bill of materials" loading="lazy"></button><figcaption><b>FIG 1.1</b>Final assembly drawing, BOM, scale 1:20</figcaption></figure>
+      <figure class="fig w5 h-a"><button data-lb aria-label="Enlarge turbopump and gas generator"><img src="assets/img/rocket-turbopump.webp" width="407" height="534" alt="Transparent view of the turbopump stack above the gas generator housing" loading="lazy"></button><figcaption><b>FIG 1.2</b>Turbopump stack and gas generator housing</figcaption></figure>
+      <figure class="fig w6 h-b"><button data-lb aria-label="Enlarge nozzle comparison"><img src="assets/img/rocket-nozzle-compare.webp" width="423" height="316" alt="Modeled bell nozzle beside a photo of a real engine nozzle firing" loading="lazy"></button><figcaption><b>FIG 1.3</b>Modeled bell nozzle vs. a real engine (reference photo)</figcaption></figure>
+      <figure class="fig w6 h-b"><button data-lb aria-label="Enlarge gas generator turbine"><img src="assets/img/rocket-turbine.webp" width="795" height="528" alt="Gas generator turbine part" loading="lazy"></button><figcaption><b>FIG 1.4</b>Gas generator turbine</figcaption></figure>
+    </div>
+    <ul class="points">
+      <li>Modeled the combustion chamber, injector plate and nozzle for efficient propellant mixing and high-pressure containment.</li>
+      <li>Analyzed the turbopump and cooling layout using fluid dynamics and structural analysis principles.</li>
+      <li>Brought thermodynamics, combustion and fluid dynamics together into one system-level model.</li>
+      <li>Routed the feed lines between tanks, pumps, gas generator and chamber. Getting every pipe to mate cleanly was the hardest part of the assembly.</li>
+    </ul>
+  </article>
+
+  <article class="case" id="gimbal" data-tags="cad sim">
+    <div class="case-top">
+      <div>
+        <p class="label">DWG 02 · Design of Mechanical Components · Spring 2026 · Team of 8</p>
+        <h3>Economical Gimbal System</h3>
+        <p class="summary">Handheld gimbals are either expensive or tied to one device. We designed a multi-axis camera and phone gimbal that can be 3D-printed in ABS with standard hardware. It went from rough sketches to SolidWorks, was redesigned in Fusion 360, and was finalized in SolidWorks with GD&amp;T on the critical mating features.</p>
+      </div>
+      <dl class="spec">
+        <div><dt>Envelope</dt><dd>≈ 10 × 7 × 10 in</dd></div>
+        <div><dt>Material</dt><dd>ABS, 30% infill</dd></div>
+        <div><dt>Fasteners</dt><dd>¼-20 bolts, brass inserts</dd></div>
+        <div><dt>Pivot</dt><dd>Ø18 mm third-axis pin</dd></div>
+      </dl>
+    </div>
+    <div class="figs">
+      <figure class="fig w6 h-a"><video src="assets/video/gimbal-motion.mp4" poster="assets/img/gimbal-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="Motion study showing gimbal pitch and yaw rotation"></video><figcaption><b>FIG 2.1</b>Motion study: axis rotation and pitch kinematics</figcaption></figure>
+      <figure class="fig w6 h-a"><button data-lb aria-label="Enlarge FEA result"><img src="assets/img/gimbal-fea.webp" width="1089" height="997" alt="SolidWorks Simulation von Mises stress plot of the gimbal mount" loading="lazy"></button><figcaption><b>FIG 2.2</b>SolidWorks Simulation, von Mises stress</figcaption></figure>
+      <figure class="fig w6 h-b"><button data-lb aria-label="Enlarge pitch arm drawing"><img src="assets/img/gimbal-drawing-pitch.webp" width="1400" height="803" alt="Detail drawing of the pitch arm with GD&amp;T callouts" loading="lazy"></button><figcaption><b>FIG 2.3</b>Pitch arm drawing with GD&amp;T</figcaption></figure>
+      <figure class="fig w6 h-b"><button data-lb aria-label="Enlarge yaw arm drawing"><img src="assets/img/gimbal-drawing-yaw.webp" width="1400" height="803" alt="Detail drawing of the yaw arm with GD&amp;T callouts" loading="lazy"></button><figcaption><b>FIG 2.4</b>Yaw arm drawing with GD&amp;T</figcaption></figure>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>$8.78</b><span>material cost per gimbal</span></div>
+      <div class="stat"><b>381.85 cm³</b><span>printed volume per unit</span></div>
+      <div class="stat"><b>17</b><span>units per 20 kg of filament</span></div>
+      <div class="stat"><b>$3.01</b><span>hardware per unit</span></div>
+    </div>
+    <ul class="points">
+      <li>Selected ABS for the printed structure on strength, weight, cost and printability.</li>
+      <li>Hand-calculated bending moments, stress concentrations and center of mass to check the structure under load.</li>
+      <li>Applied GD&amp;T and tolerancing to the Ø18 mm pin and ¼-20 fastener interfaces so the parts fit and rotate as intended.</li>
+      <li>Designed for additive manufacturing so it scales without mold retooling, the main cost driver in molded gimbals.</li>
+    </ul>
+  </article>
+
+  <article class="case" id="cpu" data-tags="sim">
+    <div class="case-top">
+      <div>
+        <p class="label">DWG 03 · Multiphysics Simulations · Spring 2026 · Team of 3</p>
+        <h3>CPU Heat Sink Fin Study</h3>
+        <p class="summary">Which matters more for a CPU heat sink, fin shape or fin material? We tested both together in ANSYS. A 2D CFD model validated the convective heat transfer coefficient against published values. That coefficient then fed 3D steady-state thermal and flow simulations of four materials and three pin-fin geometries in a ducted airflow.</p>
+      </div>
+      <dl class="spec">
+        <div><dt>Tools</dt><dd>ANSYS Fluent, MATLAB</dd></div>
+        <div><dt>Materials</dt><dd>Cu, Al, leaded brass, 304 SS</dd></div>
+        <div><dt>Fins</dt><dd>Rectangular, circular, triangular</dd></div>
+        <div><dt>h</dt><dd>16.844 W/m²·K (2D CFD)</dd></div>
+      </dl>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>306.7 K</b><span>lowest base temp: copper, rectangular fins</span></div>
+      <div class="stat"><b>51.9 K</b><span>cooler than stainless steel, triangular fins</span></div>
+      <div class="stat"><b>12</b><span>material and geometry combinations</span></div>
+    </div>
+    <div class="figs">
+      <figure class="fig w6 h-b"><button data-lb aria-label="Enlarge temperature contour"><img src="assets/img/cpu-temp-copper.webp" width="594" height="390" alt="Steady-state temperature contour of air flowing past a copper heat sink" loading="lazy"></button><figcaption><b>FIG 3.1</b>Temperature contour, copper, rectangular fins</figcaption></figure>
+      <figure class="fig w6 h-b"><button data-lb aria-label="Enlarge velocity contour"><img src="assets/img/cpu-velocity.webp" width="620" height="401" alt="Velocity contour of air through the heat sink fins" loading="lazy"></button><figcaption><b>FIG 3.2</b>Velocity contour through the fin array</figcaption></figure>
+      <figure class="fig w7 h-b"><button data-lb aria-label="Enlarge results chart"><img src="assets/img/cpu-chart.webp" width="936" height="609" alt="Line chart of maximum base temperature by material for circular, rectangular and triangular fins" loading="lazy"></button><figcaption><b>FIG 3.3</b>Max base temperature vs. material, by fin shape</figcaption></figure>
+      <figure class="fig w5 h-b"><button data-lb aria-label="Enlarge mesh"><img src="assets/img/cpu-mesh.webp" width="531" height="534" alt="Tetrahedral mesh on the heat sink fins" loading="lazy"></button><figcaption><b>FIG 3.4</b>Heat sink mesh, refined by convergence study</figcaption></figure>
+    </div>
+    <ul class="points">
+      <li>Ran a mesh convergence study on maximum temperature before trusting any results.</li>
+      <li>Found thermal conductivity was the dominant factor, and copper ran coolest with every fin shape.</li>
+      <li>Rectangular fins beat circular and triangular fins in every material by giving the air the most surface area.</li>
+      <li>Kept boundary conditions identical across all runs so materials and shapes could be compared directly.</li>
+    </ul>
+    <div class="links"><a href="assets/docs/CPU-Cooling-Fins-Report.pdf" target="_blank" rel="noopener">Read the full report (PDF)</a></div>
+  </article>
+
+  <article class="case" id="turret" data-tags="mech">
+    <div class="case-top">
+      <div>
+        <p class="label">DWG 04 · Mechatronics · Team of 5</p>
+        <h3>Distance-Sensing Rotating Turret</h3>
+        <p class="summary">A semi-autonomous turret that rotates to a commanded angle, checks for a target within 30 cm with an ultrasonic sensor, sounds a buzzer, and launches a BB. All six mechatronic subsystems are in it: display, audio output, manual input, automatic sensing, actuators, and logic control.</p>
+      </div>
+      <dl class="spec">
+        <div><dt>Controller</dt><dd>Arduino Mega (C++)</dd></div>
+        <div><dt>Sensing</dt><dd>Ultrasonic, 30 cm trigger</dd></div>
+        <div><dt>Actuation</dt><dd>2 servos, 2 DC roller motors</dd></div>
+        <div><dt>Output</dt><dd>LCD angle readout, buzzer</dd></div>
+      </dl>
+    </div>
+    <div class="figs">
+      <figure class="fig w4 h-a"><button data-lb aria-label="Enlarge turret build photo"><img src="assets/img/turret-build.webp" width="1050" height="1400" alt="Turret prototype with launcher, servos and wiring" style="object-fit:cover" loading="lazy"></button><figcaption><b>FIG 4.1</b>Built prototype</figcaption></figure>
+      <figure class="fig w4 h-a"><button data-lb aria-label="Enlarge wiring diagram"><img src="assets/img/turret-wiring.webp" width="1292" height="1400" alt="Hand-drawn wiring diagram of the Arduino, LCD, buzzer, ultrasonic sensor and servos" loading="lazy"></button><figcaption><b>FIG 4.2</b>Wiring diagram</figcaption></figure>
+      <figure class="fig w4 h-a"><button data-lb aria-label="Enlarge control flowchart"><img src="assets/img/turret-flowchart.webp" width="1400" height="962" alt="Control logic flowchart" loading="lazy"></button><figcaption><b>FIG 4.3</b>Control logic flowchart</figcaption></figure>
+    </div>
+    <ul class="points">
+      <li>The base servo turns the launcher by the angle typed into the serial monitor, and the LCD shows it.</li>
+      <li>An arm servo drives a linkage that turns rotary motion into a linear push, feeding each BB into two spinning DC rollers.</li>
+      <li>Programmed the Arduino to read the sensor, decide whether to fire, and reset the mechanism automatically.</li>
+      <li>Used MATLAB to analyze and plot sensor readings and system performance.</li>
+    </ul>
+    <div class="links"><a href="https://youtu.be/3SWY-vlytIE" target="_blank" rel="noopener">Watch the demo video</a><a href="assets/docs/Rotating-Turret-Report.pdf" target="_blank" rel="noopener">Read the report (PDF)</a></div>
+  </article>
+
+  <article class="case" id="bicycle" data-tags="cad sim">
+    <div class="case-top">
+      <div>
+        <p class="label">DWG 05 · Individual project</p>
+        <h3>Bicycle Design &amp; FEA</h3>
+        <p class="summary">A complete bicycle modeled in SolidWorks, from frame and fork to chain, pedals and treaded tires. I ran FEA on the frame under static and dynamic loads to guide material and geometry choices, and used SolidWorks Motion to check that the wheels, steering and pedals move correctly.</p>
+      </div>
+      <dl class="spec">
+        <div><dt>Tools</dt><dd>SolidWorks, Simulation, Motion</dd></div>
+        <div><dt>Parts</dt><dd>9 parts, 1 top-level assembly</dd></div>
+        <div><dt>Analysis</dt><dd>Frame FEA, static + dynamic</dd></div>
+      </dl>
+    </div>
+    <div class="figs">
+      <figure class="fig w12" style="height:auto"><button data-lb aria-label="Enlarge bicycle render"><img src="assets/img/bicycle.webp" width="1072" height="906" alt="Rendered bicycle assembly with spoked wheels, chainring and pedals" style="max-height:560px;margin:auto" loading="lazy"></button><figcaption><b>FIG 5.1</b>Rendered assembly</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="case" id="loader" data-tags="cad">
+    <div class="case-top">
+      <div>
+        <p class="label">DWG 06 · Individual project</p>
+        <h3>Wheel Loader Assembly</h3>
+        <p class="summary">A construction wheel loader built as a multi-level SolidWorks assembly. The front and rear bodies, boom, rocker arm and bucket are connected through a working linkage driven by separate boom and rocker-arm hydraulic cylinders. A tire and axle subassembly with a differential carries it.</p>
+      </div>
+      <dl class="spec">
+        <div><dt>Tools</dt><dd>SolidWorks</dd></div>
+        <div><dt>Parts</dt><dd>16 parts, 2 assemblies</dd></div>
+        <div><dt>Subassy</dt><dd>Tire, rim, axle, differential</dd></div>
+      </dl>
+    </div>
+    <div class="figs">
+      <figure class="fig w12" style="height:auto"><button data-lb aria-label="Enlarge wheel loader render"><img src="assets/img/wheel-loader.webp" width="1150" height="807" alt="Wheel loader render with bucket and boom linkage" style="max-height:560px;margin:auto" loading="lazy"></button><figcaption><b>FIG 6.1</b>Top-level assembly</figcaption></figure>
+    </div>
+  </article>
+</section>
+
+<section class="sec" id="experience">
+  <div class="wrap">
+    <div class="sec-head"><h2>Experience</h2><span class="label">Teams &amp; leadership</span></div>
+    <div class="exp">
+      <div class="role">
+        <h3>Rutgers Formula Racing (FSAE)</h3>
+        <p class="who">Powertrain Team Member</p>
+        <ul>
+          <li>Designed and modeled accumulator mounts in SolidWorks to meet FSAE rules and packaging constraints.</li>
+          <li>Helped design and machine motor shafts for the electric powertrain.</li>
+          <li>Ran ANSYS FEA on critical components for stress, deformation and factor of safety.</li>
+          <li>Used simulation results to make design decisions and cut prototype iterations.</li>
+        </ul>
+      </div>
+      <div class="role">
+        <h3>Accessible 4 All (A4A)</h3>
+        <p class="who">Project Lead</p>
+        <ul>
+          <li>Lead about 15 members building adaptive ride-on cars, tricycles and toys for children with disabilities.</li>
+          <li>Work with families to gather mobility and accessibility needs and turn them into design specs.</li>
+          <li>Own each build from concept and CAD through fabrication, testing and delivery to the family.</li>
+          <li>Coordinate woodworking, machining and CAD work, review designs, and keep builds on schedule.</li>
+        </ul>
+      </div>
+      <div class="role" style="grid-column:1 / -1">
+        <h3>Structural &amp; Thermal Analysis Study</h3>
+        <p class="who">ANSYS FEA</p>
+        <ul>
+          <li>Static structural analysis of mechanical components for stress concentration, deformation and factor of safety under realistic loads.</li>
+          <li>Thermal analysis of heat distribution to find likely failure points in high-temperature assemblies.</li>
+          <li>Checked simulation results against hand calculations and ran mesh refinement studies before making geometry recommendations.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="sec-head"><h2>Skills</h2><span class="label">Tools I use</span></div>
+    <div class="skills">
+      <div><h3>CAD &amp; simulation</h3><ul><li>SolidWorks (CSWP)</li><li>SolidWorks Simulation &amp; Motion</li><li>ANSYS: static structural, thermal, Fluent</li><li>Fusion 360</li><li>GD&amp;T and engineering drawings</li></ul></div>
+      <div><h3>Manufacturing</h3><ul><li>Manual mill and lathe</li><li>3D printing / additive</li><li>Machining &amp; tolerancing</li><li>Woodworking</li></ul></div>
+      <div><h3>Programming</h3><ul><li>MATLAB</li><li>Python</li><li>Arduino (C++)</li></ul></div>
+      <div><h3>Software &amp; teamwork</h3><ul><li>MS Office: Word, Excel, PowerPoint, Access</li><li>Technical reports &amp; presentations</li><li>Team leadership</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="certs">
+  <div class="wrap">
+    <div class="sec-head"><h2>Certifications</h2><span class="label">Dassault Systèmes · NCEES</span></div>
+    <div class="certs">
+      <div class="cert">
+        <div class="img"><button data-lb aria-label="Enlarge CSWP certificate"><img src="assets/img/cert-cswp.webp" width="936" height="662" alt="CSWP certificate issued to Aryan Vadrevu" loading="lazy"></button></div>
+        <div class="body"><h3>Certified SolidWorks Professional (CSWP)</h3><p class="mono">Issued Dec 1, 2025 · ID C-FLYUXGDVNT</p><p>Advanced modeling, complex assemblies, mates, interference detection and design optimization.</p><a href="assets/docs/CSWP-Certificate.pdf" target="_blank" rel="noopener">View certificate (PDF)</a></div>
+      </div>
+      <div class="cert">
+        <div class="img"><button data-lb aria-label="Enlarge CSWA certificate"><img src="assets/img/cert-cswa.webp" width="936" height="662" alt="CSWA certificate issued to Aryan Vadrevu" loading="lazy"></button></div>
+        <div class="body"><h3>Certified SolidWorks Associate (CSWA)</h3><p class="mono">Issued Mar 21, 2025 · ID C-ATUVJ2LY4E</p><p>Part modeling, assembly creation and reading engineering drawings.</p><a href="assets/docs/CSWA-Certificate.pdf" target="_blank" rel="noopener">View certificate (PDF)</a></div>
+      </div>
+      <div class="cert">
+        <div class="pending"><span>IN PROGRESS</span></div>
+        <div class="body"><h3>Fundamentals of Engineering (FE)</h3><p class="mono">NCEES · Engineer in Training</p><p>Preparing for the FE exam toward EIT certification.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="education">
+  <div class="wrap">
+    <div class="sec-head"><h2>Education</h2></div>
+    <div class="edu">
+      <div><h3>Rutgers University, New Brunswick</h3><p style="margin-top:6px">B.S. Mechanical Engineering · Expected May 2027</p><p class="mono" style="margin-top:6px;color:var(--ink-2)">Minor in Mathematics, completed Dec 2025</p></div>
+      <div><p class="label">Relevant coursework</p><p style="margin-top:8px">Design of Mechanical Components · Multiphysics Simulations · Mechatronics</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Let's talk</h2>
+      <p>I'm looking for mechanical engineering internships, especially in automotive, robotics and autonomous systems.</p>
+    </div>
+    <div class="row">
+      <span class="addr">vadrevuaryan@gmail.com</span>
+      <button class="btn" id="copy-email" type="button">Copy email</button>
+      <a class="btn" href="assets/docs/Aryan-Vadrevu-Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      <a class="btn" href="https://www.linkedin.com/in/aryan-vadrevu" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span>© 2026 Aryan Vadrevu</span><span class="mono">SHEET 1 OF 1 · DO NOT SCALE DRAWING</span></div></footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button type="button" id="lb-close">Close</button>
+  <div><img id="lb-img" alt=""><p id="lb-cap"></p></div>
+</div>
+
+<script>
+(function () {
+  var chips = document.querySelectorAll('.chip');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var f = c.dataset.f;
+      chips.forEach(function (o) { o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+      document.querySelectorAll('#index .card, .case').forEach(function (el) {
+        el.hidden = f !== 'all' && el.dataset.tags.split(' ').indexOf(f) === -1;
+      });
+    });
+  });
+
+  var lb = document.getElementById('lb'), img = document.getElementById('lb-img'), cap = document.getElementById('lb-cap'), last;
+  function close() { lb.hidden = true; img.src = ''; if (last) last.focus(); }
+  document.querySelectorAll('[data-lb]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var src = b.querySelector('img'), fc = b.closest('figure') && b.closest('figure').querySelector('figcaption');
+      last = b; img.src = src.src; img.alt = src.alt; cap.textContent = fc ? fc.textContent : src.alt;
+      lb.hidden = false; document.getElementById('lb-close').focus();
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', close);
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) close(); });
+
+  var cb = document.getElementById('copy-email');
+  cb.addEventListener('click', function () {
+    var t = 'vadrevuaryan@gmail.com';
+    function sel() { var r = document.createRange(); r.selectNodeContents(document.querySelector('.addr')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () { cb.textContent = 'Copied'; }, sel); else sel();
+  });
+})();
+</script>
+</body></html>
